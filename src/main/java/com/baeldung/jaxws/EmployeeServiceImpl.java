@@ -3,7 +3,6 @@ package com.baeldung.jaxws;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baeldung.jaxws.model.Employee;
@@ -12,7 +11,6 @@ import com.baeldung.jaxws.model.Employee;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
   
-	//@Autowired
 	private EmployeeRepository employeeRepositoryImpl = new EmployeeRepository();
 
 	

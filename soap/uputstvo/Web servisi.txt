@@ -1,0 +1,23 @@
+Web servisi
+
+1. Spring initializer napraviti prazan projekat (ukoliko se slucajno buni za pom.xml nakon maven updajta promeniti verziju u sa 2.1.5 na 2.1.4 obrisati folder sa testovima i izbildovati clean install i nakon toga maven update sa chekovanim force) 
+2. model, get, set, kontruktori
+3. napraviti repozitorijum sa zeljenim metodama
+4. napraviti service interfejs sa metodama koje pozivaju repozitorijum i implementaciju service iterfejsa
+5. obe klase je potrebno iz anotirati sa @WebMethod
+6. sve metode unutar te dve klase je potrebno izanotirati sa @WebMethod
+7. unutar implementacije serviceImpl dodatno instancirati repozitorijum koji ce da pozove
+ i dodati  unutar anotacije @WebService putanju ka interfejsu 
+ @WebService(endpointInterface = "com.baeldung.jaxws.EmployeeService")
+ 8. i za kraj potrebno je publisovati endpoint u mainu(tamo gde je spring runner) gde se prosledjuje izabrana putanja
+ i implementacija servisa za taj endpoint kao servis
+ Endpoint.publish("http://localhost:8555/employeeservice", new EmployeeServiceImpl());
+ 9. menjanje porta u app.properties dodati liniju koda server.port=8555
+
+ testiranje
+ 1. skinuti soap ui https://www.soapui.org/getting-started/soap-test.html gde se nalazi uputsvo 
+ 2. napraviti tu novi projekat i proslediti mu .wsdl za zeljeni servise
+ 3. u postmanu uputiti  GET zahtev na sledecu putanju http://localhost:8555/employeeservice?wsdl
+ port 8555/ ime servisa koje je zadato u mainu - employeeservice / ? wsdl uvek
+ 4. kopirati respons sacuvati u fajl i proslediti soap ui
+ 5. soap ui generise request za sve objavljene metode u koje unese parametre oznacene sa ? i testirate metode
